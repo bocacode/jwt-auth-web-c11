@@ -10,9 +10,24 @@ export default function Login() {
     const email = e.target.email.value
     const password = e.target.password.value
     // now send email and password to api
+    fetch('127.0.0.1:5002/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email, password }),
+    })
     // get back user and token
-    // store user and token
+      .then(res => res.json())
+      .then(data => {
+        if(data.message) {
+          setError(data.message)
+          return
+        }
+        // store user and token
+      })
     // handle any errors
+      .catch(err => setError(err.message))
   }
   return (
     <div className='w-full h-screen font-sans bg-cover bg-landscape'>
@@ -44,7 +59,6 @@ export default function Login() {
               {error &&
                 <div className="bg-red-200 border-red-600
                 text-red-600 border-l-4 p-4 mt-4" role="alert">
-                  <p className="font-bold">Error</p>
                   <p>{error}</p>
                 </div>
               }
