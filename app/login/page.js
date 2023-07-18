@@ -10,7 +10,7 @@ export default function Login() {
     const email = e.target.email.value
     const password = e.target.password.value
     // now send email and password to api
-    fetch('127.0.0.1:5002/login', {
+    fetch('http://127.0.0.1:5002/login', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -34,7 +34,7 @@ export default function Login() {
       <div className='container flex items-center justify-center flex-1 h-full mx-auto'>
         <div className='w-full max-w-lg'>
           <div className='leading-loose'>
-            <form className='max-w-sm p-10 m-auto rounded shadow-xl bg-white/25'>
+            <form onSubmit={handleLoginForm} className='max-w-sm p-10 m-auto rounded shadow-xl bg-white/25'>
               <p className='mb-8 text-2xl font-light text-center text-white'>Login</p>
               <div className='mb-2'>
                 <div className=' relative '>
@@ -49,7 +49,7 @@ export default function Login() {
               <div className='mb-2'>
                 <div className=' relative '>
                   <input
-                    type='text'
+                    type='password'
                     name='password'
                     className='rounded-lg border-transparent flex-1 appearance-none border border-gray-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent'
                     placeholder='password'
